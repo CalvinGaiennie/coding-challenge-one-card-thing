@@ -4,10 +4,12 @@ import "./App.css";
 function App() {
   return (
     <div className="card">
-      <Avatar src="/download.jpeg" name="Jonas Schmedtman" />
+      <Avatar src="/download.jpeg" />
       <div className="data">
-        <Intro text={"Fledgling Developer blah blah blah"} />
-        <Skill text="Web Dev" />
+        <Intro
+          name="Jonas Schmedtman"
+          text={"Fledgling Developer blah blah blah"}
+        />
         <SkillList />
       </div>
     </div>
@@ -17,19 +19,37 @@ function App() {
 function Avatar(props) {
   return (
     <div>
-      <img src={props.src} alt="avatar"></img>
-      <h1>{props.name}</h1>
+      <img className="avatar" src={props.src} alt={props.name}></img>
     </div>
   );
 }
 function Intro(props) {
-  return <p>{props.text}</p>;
+  return (
+    <div>
+      <h1>{props.name}</h1>
+      <p>{props.text}</p>
+    </div>
+  );
+}
+
+function SkillList() {
+  return (
+    <div className="skill-list">
+      <Skill skill="React" emoji="💪" color="blue" />
+      <Skill skill="HTML/CSS" emoji="💪" color="orangered" />
+      <Skill skill="JavaScript" emoji="💪" color="yellow" />
+      <Skill skill="Svelte" emoji="👶" color="orange" />
+    </div>
+  );
 }
 
 function Skill(props) {
-  return <div className="skill">{props.text}</div>;
+  return (
+    <div className="skill" style={{ backgroundColor: props.color }}>
+      <span>{props.skill}</span>
+      <span>{props.emoji}</span>
+    </div>
+  );
 }
-
-function SkillList() {}
 
 export default App;
